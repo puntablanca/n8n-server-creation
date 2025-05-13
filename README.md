@@ -27,6 +27,8 @@ This guide provides step-by-step instructions to self-host [n8n](https://n8n.io)
 
 **Run the following command to start n8n in Docker. Replace your-domain.com with your actual domain name:**
 
+This command is going to create based on the latest version, but right now it's getting a connection lost error. 
+
 ```bash
     sudo docker run -d --restart unless-stopped -it \
     --name n8n \
@@ -49,6 +51,19 @@ This guide provides step-by-step instructions to self-host [n8n](https://n8n.io)
     -e WEBHOOK_URL="https://subdomain.your-domain.com/" \
     -v ~/.n8n:/root/.n8n \
     n8nio/n8n
+```
+The last version that is not showing this error is this one. 
+
+```bash
+    sudo docker run -d --restart unless-stopped -it \
+    --name n8n \
+    -p 5678:5678 \
+    -e N8N_HOST="your-domain.com" \
+    -e WEBHOOK_TUNNEL_URL="https://your-domain.com/" \
+    -e WEBHOOK_URL="https://your-domain.com/" \
+    -v ~/.n8n:/root/.n8n \
+    n8nio/n8n:1.74.4
+
 ```
 
 
